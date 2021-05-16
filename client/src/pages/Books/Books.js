@@ -74,7 +74,7 @@ function Books() {
                 <Input
                   onChange={handleInputChange}
                   name="author"
-                  placeholder="Author (required)"
+                  placeholder="Investing App Name (required)"
                 />
                 <TextArea
                   onChange={handleInputChange}
@@ -91,7 +91,7 @@ function Books() {
             </Card>
           </Col>
           <Col size="md-6 sm-12">
-            <Card title="Books On My List">
+            <Card title="Crypto Currencies On My List">
               {books.length ? (
                 <List>
                   {books.map(book => (
