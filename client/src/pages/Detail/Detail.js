@@ -22,7 +22,7 @@ function Detail(props) {
       <Container fluid>
         <Row>
           <Col size="md-2">
-            <div className="mt-3"><Link to="/">←</Link> Back to Authors</div>
+            <div className="mt-3"><Link to="/">←</Link> Back to Home</div>
           </Col>
         </Row>
         <Row>

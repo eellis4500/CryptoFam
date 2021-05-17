@@ -64,34 +64,34 @@ function Books() {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Card title="What Books Should I Read?">
+            <Card title="What Crypto would you like to track?">
               <form ref={formEl}>
                 <Input
                   onChange={handleInputChange}
                   name="title"
-                  placeholder="Title (required)"
+                  placeholder="Crypto Name (required)"
                 />
                 <Input
                   onChange={handleInputChange}
                   name="author"
-                  placeholder="Author (required)"
+                  placeholder="Investing App Name (required)"
                 />
                 <TextArea
                   onChange={handleInputChange}
                   name="synopsis"
-                  placeholder="Synopsis (Optional)"
+                  placeholder="Reason for tracking (Optional)"
                 />
                 <FormBtn
                   disabled={!(formObject.author && formObject.title)}
                   onClick={handleFormSubmit}
                 >
-                  Submit Book
+                  Submit Crypto Currency
                 </FormBtn>
               </form>
             </Card>
           </Col>
           <Col size="md-6 sm-12">
-            <Card title="Books On My List">
+            <Card title="Crypto Currencies On My List">
               {books.length ? (
                 <List>
                   {books.map(book => (
