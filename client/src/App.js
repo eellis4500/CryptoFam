@@ -61,8 +61,8 @@ function App() {
           <div className="main-view">
             <Switch>
               <Route exact path="/" component={Books} />
-              <Route exact path="/books" component={Books} />
-              <Route exact path="/books/:id" component={Detail} />
+              <Route exact path="/crypto" component={Books} />
+              <Route exact path="/crypto/:coin" component={Detail} />
               <Route component={NoMatch} />
             </Switch>
           </div>
@@ -71,7 +71,7 @@ function App() {
       { !loggedIn && (
         <div className="auth-wrapper" style={{paddingTop:40}}>
           <Route exact path="/" component={() => <LoginForm login={login}/>} />
-          <Route exact path="/books" component={() => <LoginForm user={login} />} />
+          <Route exact path="/crypto" component={() => <LoginForm user={login} />} />
           <Route exact path="/signup" component={SignupForm} />
         </div>
       )}
