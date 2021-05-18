@@ -17,12 +17,14 @@ module.exports = {
     }
   },
   findById: function(req, res) {
+    
     if (req.user) {
       db.User
         .find({ _id: req.user._id })
         .populate("books")
         .then(users => {
-          const book = users[0].books.filter(b => b._id.toString() === req.params.id);
+          console.log(users[0].books)
+          const book = users[0].books.filter(b => b.author.toString() === req.params.id);
           res.json({ book: book[0] });
         })
         .catch(err => res.status(422).json(err));
