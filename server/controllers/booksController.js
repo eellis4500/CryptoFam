@@ -24,7 +24,7 @@ module.exports = {
         .populate("books")
         .then(users => {
           console.log(users[0].books)
-          const book = users[0].books.filter(b => b.author.toString() === req.params.id);
+          const book = users[0].books.filter(b => b.symbol.toString() === req.params.id);
           res.json({ book: book[0] });
         })
         .catch(err => res.status(422).json(err));

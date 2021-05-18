@@ -1,22 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Line }from 'react-chartjs-2'
+import COIN from '../../utils/COIN'
 
 import { Col, Row, Container } from "../../components/Grid";
 import { Card } from "../../components/Card";
-import API from "../../utils/API";
+
 
 function Detail(props) {
-  const [book, setBook] = useState({})
 
-  // When this component mounts, grab the book with the _id of props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  const { id } = useParams();
 
-  useEffect(() => {
-    API.getBook(id)
-      .then(res => setBook(res.data.book))
-      .catch(err => console.log(err));
-  }, [id]);
+  // When this component mounts, grab the coin from params
+  const { coin } = useParams();
+
+  const [price, setPrice] = useState({})
+  
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
+  
+  useEffect(()=>{
+    COIN.getPrice(coin.toLowerCase())
+      .then(res=>{
+       const prices = res.data.prices.map(price =>price[1])
+       const dates = res.data.prices.map(date =>{
+        return new Date(date[0]).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+       })
+    
+        setPrice(prevPrices => ({
+          ...prevPrices,
+          labels: dates,
+          datasets:[{
+            label: 'Price',
+            data: prices,
+            backgroundColor: 'rgb(39, 177, 77)',
+            borderColor: 'rgb(39, 177, 77)',
+          }]
+          
+        }))
+      })
+  },[coin])
+  
 
   return (
       <Container fluid>
@@ -26,14 +60,24 @@ function Detail(props) {
           </Col>
         </Row>
         <Row>
+          <Container>
           <Col size="md-12">
-            <Card title={`${book.title} by ${book.author}`}>
-              <article>
-                <h5>Synopsis:</h5>
-                <p>{book.synopsis}</p>
-              </article>
+            <Card title={`${coin} 7 day Price Chart`}>
+              <div>
+              <Line
+                    data={price}
+                    options={options}
+                  />
+              </div>
             </Card>
           </Col>
+          </Container>
+
+        </Row>
+        <Row>
+          <Container fluid>
+            <h1>Market Analysis</h1>
+          </Container>
         </Row>
       </Container>
     );

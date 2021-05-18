@@ -8,6 +8,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 
+
 function Books() {
   // Setting our component's initial state
   const [books, setBooks] = useState([]);
@@ -45,12 +46,14 @@ function Books() {
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   function handleFormSubmit(event) {
+
     event.preventDefault();
-    if (formObject.title && formObject.author) {
+    if (formObject.title && formObject.symbol) {
       API.saveBook({
         title: formObject.title,
-        author: formObject.author,
+        symbol: formObject.symbol,
         synopsis: formObject.synopsis
+
       })
         .then(res => {
           formEl.current.reset();
@@ -69,12 +72,12 @@ function Books() {
                 <Input
                   onChange={handleInputChange}
                   name="title"
-                  placeholder="Crypto Name (required)"
+                  placeholder="Crypto Name (Full Name Required)"
                 />
                 <Input
                   onChange={handleInputChange}
-                  name="author"
-                  placeholder="Investing App Name (required)"
+                  name="symbol"
+                  placeholder="Symbol(required)"
                 />
                 <TextArea
                   onChange={handleInputChange}
@@ -82,7 +85,7 @@ function Books() {
                   placeholder="Reason for tracking (Optional)"
                 />
                 <FormBtn
-                  disabled={!(formObject.author && formObject.title)}
+                  disabled={!(formObject.symbol && formObject.title)}
                   onClick={handleFormSubmit}
                 >
                   Submit Crypto Currency
@@ -96,11 +99,11 @@ function Books() {
                 <List>
                   {books.map(book => (
                     <ListItem key={book._id}>
-                      <Link to={"/books/" + book._id}>
+                      <Link to={`/crypto/${book.title}`}>
                         <strong>
-                          {book.title} by {book.author}
+                          {book.title} ({book.symbol})
                         </strong>
-                      </Link>
+                      </Link> 
                       <DeleteBtn onClick={() => deleteBook(book._id)} />
                     </ListItem>
                   ))}
