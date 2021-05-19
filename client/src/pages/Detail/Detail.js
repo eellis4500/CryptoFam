@@ -5,6 +5,7 @@ import COIN from '../../utils/COIN'
 
 import { Col, Row, Container } from "../../components/Grid";
 import { Card } from "../../components/Card";
+import NEWS from "../../utils/NEWS";
 
 
 function Detail(props) {
@@ -13,8 +14,8 @@ function Detail(props) {
   // When this component mounts, grab the coin from params
   const { coin } = useParams();
 
-  const [price, setPrice] = useState({})
-  
+  const [state, setState] = useState({ news: [], prices: {} })
+
 
   const options = {
     scales: {
@@ -28,28 +29,42 @@ function Detail(props) {
     },
   };
 
-  
-  useEffect(()=>{
-    COIN.getPrice(coin.toLowerCase())
-      .then(res=>{
-       const prices = res.data.prices.map(price =>price[1])
-       const dates = res.data.prices.map(date =>{
-        return new Date(date[0]).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
-       })
-    
-        setPrice(prevPrices => ({
-          ...prevPrices,
-          labels: dates,
-          datasets:[{
-            label: 'Price',
-            data: prices,
-            backgroundColor: 'rgb(39, 177, 77)',
-            borderColor: 'rgb(39, 177, 77)',
-          }]
-          
+  useEffect(() => {
+    const remoteNewsPromise= NEWS.getNews(coin.toLowerCase())
+   remoteNewsPromise  
+      .then(items => {
+        console.log(items)
+        const transformedNews = items.data.value // Whatever logic to put in the correct format
+        console.log(transformedNews)
+        setState(prevState => ({
+          ...prevState,
+          news: transformedNews,
         }))
       })
-  },[coin])
+  }, [coin])
+  
+  useEffect(()=>{
+    const remoteDataPromise = COIN.getPrice(coin.toLowerCase())
+    remoteDataPromise
+      .then( res => {
+        
+        const prices = res.data.prices.map(price => price[1])
+        const dates = res.data.prices.map(date => new Date(date[0]).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }))
+        
+        setState(prevState => ({
+          ...prevState,
+          prices: {
+            labels: dates,
+            datasets:[{
+              label: 'Price',
+              data: prices,
+              backgroundColor: 'rgb(39, 177, 77)',
+              borderColor: 'rgb(39, 177, 77)',
+            }]
+          }
+        }))
+      })
+  }, [coin])
   
 
   return (
@@ -65,7 +80,7 @@ function Detail(props) {
             <Card title={`${coin} 7 day Price Chart`}>
               <div>
               <Line
-                    data={price}
+                    data={state.prices}
                     options={options}
                   />
               </div>
@@ -76,7 +91,8 @@ function Detail(props) {
         </Row>
         <Row>
           <Container fluid>
-            <h1>Market Analysis</h1>
+            <h1>Recent News</h1>
+            { state.news.map(item=><Card title={item.name} children={item.description}/>) }
           </Container>
         </Row>
       </Container>
