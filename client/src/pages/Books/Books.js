@@ -52,7 +52,7 @@ function Books() {
       API.saveBook({
         title: formObject.title,
         symbol: formObject.symbol,
-        synopis: formObject.synopsis
+        synopsis: formObject.synopsis
 
       })
         .then(res => {
@@ -103,6 +103,8 @@ function Books() {
                         <strong>
                           {book.title} ({book.symbol})
                         </strong>
+                        <h3>Reason for tracking?</h3>
+                        <p>{book.synopsis}</p>
                       </Link> 
                       <DeleteBtn onClick={() => deleteBook(book._id)} />
                     </ListItem>

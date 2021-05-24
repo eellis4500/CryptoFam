@@ -11,7 +11,7 @@ import API from "../../utils/API";
 function Detail(props) {
   // When this component mounts, grab the coin from params
   const { coin } = useParams();
-  const [crypto, setCrypto] = useState({});
+  
 
   const [state, setState] = useState({ news: [], prices: {} });
 
@@ -86,7 +86,7 @@ function Detail(props) {
                 <Line data={state.prices} options={options} />
               </div>
             </Card>
-            <Card title={coin} body={crypto}></Card>
+           
           </Col>
         </Container>
       </Row>
