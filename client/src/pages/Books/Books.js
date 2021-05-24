@@ -52,7 +52,7 @@ function Books() {
       API.saveBook({
         title: formObject.title,
         symbol: formObject.symbol,
-        synopsis: formObject.synopsis
+        synopis: formObject.synopsis
 
       })
         .then(res => {
