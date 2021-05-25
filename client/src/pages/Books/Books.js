@@ -103,9 +103,9 @@ function Books() {
                         <strong>
                           {book.title} ({book.symbol})
                         </strong>
-                        <h3>Reason for tracking?</h3>
-                        <p>{book.synopsis}</p>
                       </Link> 
+                      <h3>Reason for tracking?</h3>
+                        <p>{book.synopsis}</p>
                       <DeleteBtn onClick={() => deleteBook(book._id)} />
                     </ListItem>
                   ))}
