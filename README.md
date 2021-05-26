@@ -27,14 +27,13 @@ To use CryptoFam, you will need to go to the main landing page (listed above), a
 The following resourses were used in the creation of this project:
 
 APIs
-- 
+- https://www.coingecko.com/en/api
 
 ### Other websites
 
-- https://stackoverflow.com/
+- https://www.mongodb.com/
 - https://www.w3schools.com/
 - https://www.heroku.com/
-- https://www.screentogif.com/
 - https://github.com/
 - https://unsplash.com/
 
