@@ -10,7 +10,7 @@ To use CryptoFam, you will need to go to the main landing page (listed above), a
 
 ## Screenshots
 
-![registration]
+![registration](./client/src/utils/images/loginpage.jpg)
 ![login]
 ![profile]
 ![dashboard]
