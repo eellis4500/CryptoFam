@@ -81,7 +81,7 @@ function Detail(props) {
         <Container>
       
           <Col size="9">
-            <Card title={`${coin} 7 day Price Chart`}>
+            <Card style={{backgroundColor: "powderblue"}} title={`${coin} 7 day Price Chart`}>
               <div>
                 <Line data={state.prices} options={options} />
               </div>
@@ -91,7 +91,7 @@ function Detail(props) {
         </Container>
       </Row>
       <Row>
-        <h1>Recent News</h1>
+        <h1 className='text-white'>Recent News</h1>
         <Container fluid>
           <div className="card-deck">
             {state.news.map((item) => (
