@@ -3,3 +3,11 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.App{
+  background-image: url(./utils/images/backgroundcrypto.jpg);
+  background-size: cover;
+  height: 1300px;
+  background-position: center;
+  background-repeat: no-repeat;
+}

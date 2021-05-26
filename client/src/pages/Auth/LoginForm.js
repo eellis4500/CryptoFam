@@ -32,7 +32,7 @@ function LoginForm({login}) {
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Card title="Login to React Reading List">
+            <Card title="Welcome to CryptoFam, Login or Register below!">
               <form style={{marginTop: 10}}>
                 <label htmlFor="username">Username: </label>
                 <Input

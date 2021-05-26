@@ -23,7 +23,7 @@ const Nav = (props) => {
   }
   
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark">
       <Col size="md-6 sm-6">
         <Link to="/" className="navbar-brand">CryptoFam</Link>
       </Col>
