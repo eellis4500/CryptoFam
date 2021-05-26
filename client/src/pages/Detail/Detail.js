@@ -6,8 +6,6 @@ import './Detail.css';
 import { Col, Row, Container } from "../../components/Grid";
 import { Card, Card2 } from "../../components/Card";
 import NEWS from "../../utils/NEWS";
-import API from "../../utils/API";
-
 
 function Detail(props) {
   // When this component mounts, grab the coin from params
@@ -82,7 +80,7 @@ function Detail(props) {
         <Container>
       
           <Col size="9">
-            <Card title={`${coin} 7 day Price Chart`}>
+            <Card style={{backgroundColor: "lightblue"}} title={`${coin} 7 day Price Chart`}>
               <div>
                 <Line data={state.prices} options={options} />
               </div>
@@ -92,7 +90,7 @@ function Detail(props) {
         </Container>
       </Row>
       <Row>
-        <h1>Recent News</h1>
+        <h1 className='text-white'>Recent News</h1>
         <Container fluid>
           <div className="card-deck">
             {state.news.map((item) => (
