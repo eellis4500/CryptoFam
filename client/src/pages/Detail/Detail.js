@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import COIN from "../../utils/COIN";
-
+import './Detail.css';
 import { Col, Row, Container } from "../../components/Grid";
 import { Card, Card2 } from "../../components/Card";
 import NEWS from "../../utils/NEWS";
 import API from "../../utils/API";
+
 
 function Detail(props) {
   // When this component mounts, grab the coin from params
@@ -59,8 +60,8 @@ function Detail(props) {
             {
               label: "Price",
               data: prices,
-              backgroundColor: "rgb(39, 177, 77)",
-              borderColor: "rgb(39, 177, 77)",
+              backgroundColor: "rgb(57, 177, 174)",
+              borderColor: "rgb(57, 177, 174)",
             },
           ],
         },
