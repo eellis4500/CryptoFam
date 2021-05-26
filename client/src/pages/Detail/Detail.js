@@ -6,7 +6,6 @@ import './Detail.css';
 import { Col, Row, Container } from "../../components/Grid";
 import { Card, Card2 } from "../../components/Card";
 import NEWS from "../../utils/NEWS";
-
 function Detail(props) {
   // When this component mounts, grab the coin from params
   const { coin } = useParams();
@@ -94,7 +93,7 @@ function Detail(props) {
         <Container fluid>
           <div className="card-deck">
             {state.news.map((item) => (
-              <Card2 coin={coin} title={item.name} text={item.description} />
+              <Card2 coin={coin} title={item.name} text={item.description} url={item.url} />
             ))}
           </div>
         </Container>
